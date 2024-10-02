@@ -1,4 +1,3 @@
-
 variable lambda_function_name {
     description     = "Name of lambda function"
     type            = string
@@ -10,4 +9,3 @@ variable lambda_file_name {
     type            = string
     default         = "lambda_function"
 }
-
