@@ -29,6 +29,10 @@ jobs:
      id: fmt
      run: terraform fmt -check
 
+   # Added by wtc - to fix terraform validate -no-color error
+   - name: Terraform Init
+     run: terraform init -upgrade -backend=false
+
    - name: Terraform Validate
      id: validate
      run: terraform validate -no-color

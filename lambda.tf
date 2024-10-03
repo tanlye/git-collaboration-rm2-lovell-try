@@ -1,3 +1,13 @@
+# Added by wtc - 2024-10-03 Fix the lambda.tf:4:1: Warning - Missing version constraint for provider "archive" in `required_providers` (terraform_required_providers)
+# Modify by wtc - 2024-10-03 Move to provider.tf
+# terraform {
+#   required_providers {
+#     archive = {
+#       source  = "hashicorp/archive"
+#       version = "~> 2.0"
+#     }
+#   }
+# }
 
 # Defines the lambda function code
 
@@ -44,7 +54,9 @@ data "aws_iam_policy_document" "inline_policy_cloudwatch" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name               = "iam_for_<group_name>_lambda"
+  # Change by wtc 2024-10-03
+  # name               = "iam_for_<group_name>_lambda"
+  name               = "iam_for_group-02-collab_lambda"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 
   inline_policy {
