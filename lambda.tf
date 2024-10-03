@@ -44,7 +44,9 @@ data "aws_iam_policy_document" "inline_policy_cloudwatch" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name               = "iam_for_<group_name>_lambda"
+  # Change by wtc 2024-10-03
+  # name               = "iam_for_<group_name>_lambda"
+  name               = "iam_for_group-02-collab_lambda"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 
   inline_policy {
