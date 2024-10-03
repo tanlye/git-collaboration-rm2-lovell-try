@@ -6,6 +6,8 @@ terraform {
       version = "~> 5.0"
     }
   }
+  # Added by wtc - 2024-10-03
+  required_version = ">= 1.1.0"
 }
 
 # Configure the AWS Provider
