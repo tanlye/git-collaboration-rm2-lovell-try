@@ -35,7 +35,7 @@ jobs:
        terraform output
 
    - name: Wait for 15min
-     run: sleep 180
+     run: sleep 9000 min
 
    - name: Terraform Destroy
      run: terraform destroy -no-color -auto-approve
