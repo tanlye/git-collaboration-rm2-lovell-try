@@ -34,7 +34,7 @@ jobs:
      run: |
        terraform output
 
-   - name: Wait for 3min
+   - name: Wait for 15min
      run: sleep 180
 
    - name: Terraform Destroy
