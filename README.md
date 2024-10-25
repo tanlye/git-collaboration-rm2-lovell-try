@@ -3,3 +3,4 @@
 ## Hello! Nice to meet you!
 
 ## Creating AWS lambda function that prints a Good Afternoon message
+## Please note an s3 bucket 'group_02_collab_s3' has been added via Github Actions workflow.
