@@ -14,7 +14,7 @@ variable "lambda_file_name" {
 variable "s3bucketname" {
   description = "The name of the S3 bucket created"
   type        = string
-  default     = "group_02_collab_s3"  #if no value defined at runtime, then will just use this default value. Runtime change: terraform plan --var s3bucketname=xxx
+  default     = "group-02-collab-s3-bucket"  #if no value defined at runtime, then will just use this default value. Runtime change: terraform plan --var s3bucketname=xxx
 }
 
 variable "env" {
@@ -29,11 +29,11 @@ variable "department" {
   default     = "DevOps"
 }
 
-# variable "ami_id" {
-#   description = "AMI ID"
-#   type        = string
-#   default     = "ami-0b72821e2f351e396"
-# }
+variable "ami_id" {
+  description = "AMI ID"
+  type        = string
+  default     = "ami-0b72821e2f351e396"
+}
 
 
 variable "ec2_name" {

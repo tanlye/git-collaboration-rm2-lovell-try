@@ -1,4 +1,5 @@
 # Network
+data "aws_availability_zones" "available" {}
 
 resource "aws_vpc" "app_vpc" {
   cidr_block = "10.123.0.0/16"
@@ -21,7 +22,7 @@ resource "aws_subnet" "public_subnet" {
   vpc_id            = aws_vpc.app_vpc.id
   cidr_block        = "10.123.0.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "us-east-1c"
+  availability_zone = "us-east-1a"
 }
 
 resource "aws_route_table" "public_rt" {
@@ -111,11 +112,11 @@ resource "aws_instance" "apache" {
   tags = {
     Name = var.ec2_name
   }
-  user_data = <<-EOF
-  #!/bin/bash
-  echo "*** Installing apache2"
-  sudo apt update -y
-  sudo apt install apache2 -y
-  echo "*** Completed Installing apache2"
-  EOF
+#   user_data = <<-EOF
+#   #!/bin/bash
+#   echo "*** Installing apache2"
+#   sudo apt update -y
+#   sudo apt install apache2 -y
+#   echo "*** Completed Installing apache2"
+#   EOF
 }
