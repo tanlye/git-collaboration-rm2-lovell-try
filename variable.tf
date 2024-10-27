@@ -2,7 +2,7 @@
 variable "lambda_function_name" {
   description = "Name of lambda function"
   type        = string
-  default     = "group-02-collab-tf-lambda-fn"
+  default     = "group_02_lambda_new"
 }
 
 variable "lambda_file_name" {
