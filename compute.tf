@@ -2,10 +2,10 @@
 data "aws_availability_zones" "available" {}
 
 resource "aws_vpc" "app_vpc" {
-  cidr_block = "10.123.0.0/16"
-  instance_tenancy = "default"
+  cidr_block           = "10.123.0.0/16"
+  instance_tenancy     = "default"
   enable_dns_hostnames = true
-  
+
   tags = {
     Name = "rm2-tf-vpc"
   }
@@ -19,10 +19,10 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_subnet" "public_subnet" {
-  vpc_id            = aws_vpc.app_vpc.id
-  cidr_block        = "10.123.0.0/24"
+  vpc_id                  = aws_vpc.app_vpc.id
+  cidr_block              = "10.123.0.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "us-east-1a"
+  availability_zone       = "us-east-1a"
 }
 
 resource "aws_route_table" "public_rt" {
@@ -49,8 +49,8 @@ resource "aws_route_table_association" "public_rt_asso" {
 resource "aws_security_group" "allow-http" {
   name        = "allow-http"
   description = "Allow incoming HTTP traffic"
-  vpc_id = aws_vpc.app_vpc.id
-  
+  vpc_id      = aws_vpc.app_vpc.id
+
   ingress {
     description      = "HTTP from VPC"
     from_port        = 80
@@ -69,7 +69,7 @@ resource "aws_security_group" "allow-http" {
   }
 
   tags = {
-    Name = "rm2-tf-SSHSecurityGroup",
+    Name        = "rm2-tf-SSHSecurityGroup",
     description = "Security Group To Allow SSH from my IP range(s)",
 
   }
@@ -79,12 +79,12 @@ resource "aws_security_group" "allow-http" {
 # EC2
 
 data "aws_ami" "ami_id" {
-  most_recent      = true
- # name_regex       = "al2023-ami-2023.*"
-  owners           = ["amazon"]
+  most_recent = true
+  # name_regex       = "al2023-ami-2023.*"
+  owners = ["amazon"]
 
   filter {
-    name = "name"
+    name   = "name"
     values = ["al2023-ami-2023.*"]
   }
   filter {
@@ -103,7 +103,7 @@ data "aws_ami" "ami_id" {
 
 
 resource "aws_instance" "apache" {
-  ami                         = data.aws_ami.ami_id.id   #var.ami_id
+  ami                         = data.aws_ami.ami_id.id #var.ami_id
   instance_type               = var.instance_type
   key_name                    = var.key_name
   subnet_id                   = aws_subnet.public_subnet.id
@@ -112,11 +112,11 @@ resource "aws_instance" "apache" {
   tags = {
     Name = var.ec2_name
   }
-#   user_data = <<-EOF
-#   #!/bin/bash
-#   echo "*** Installing apache2"
-#   sudo apt update -y
-#   sudo apt install apache2 -y
-#   echo "*** Completed Installing apache2"
-#   EOF
+  #   user_data = <<-EOF
+  #   #!/bin/bash
+  #   echo "*** Installing apache2"
+  #   sudo apt update -y
+  #   sudo apt install apache2 -y
+  #   echo "*** Completed Installing apache2"
+  #   EOF
 }
